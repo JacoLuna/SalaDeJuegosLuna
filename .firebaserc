@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "saladejuegos-2ffe9"
+  },
+  "targets": {
+    "saladejuegos-2ffe9": {
+      "hosting": {
+        "saladejuegosluna": [
+          "saladejuegos-2ffe9"
+        ]
+      }
+    }
   }
 }

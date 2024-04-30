@@ -4,7 +4,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { WhoAmIComponent } from './componentes/who-am-i/who-am-i.component';
 
 export const routes: Routes = [
-  { path: 'whoAmI',  component: WhoAmIComponent },
+  {path: 'whoAmI',  component: WhoAmIComponent },
   {path: 'logIn', component: LoginComponent},
   {
     path: 'Home',
@@ -18,6 +18,11 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./componentes/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./componentes/register/register.component').then((m) => m.RegisterComponent),
   },
 
   { path: '**', component: HomeComponent },
