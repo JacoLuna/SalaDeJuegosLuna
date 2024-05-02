@@ -21,8 +21,10 @@ export class NavBarComponent {
       this.isLogged = true;
       this.user = user;
     });
+    this.logOut();
   }
   logOut(){
     this.Auth.logOut();
+    this.isLogged = false;
   }
 }

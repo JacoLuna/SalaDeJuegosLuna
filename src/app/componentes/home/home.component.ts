@@ -11,22 +11,8 @@ import { User } from '../../classes/user/user';
   providers: [LoginComponent],
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit{
-  isLogged: boolean = false;
-  user: User = new User();
-  constructor(private Auth: AuthenticationService){}
-  
-  ngOnInit(): void {
-    this.Auth.userLoggedIn.subscribe(user => {
-      console.log(user);
-      this.isLogged = true;
-      this.user = user;
-    });
-  }
-  logOut(){
-    this.Auth.logOut();
-  }
-
+export class HomeComponent {
+  constructor(private Auth: AuthenticationService) {}
 }

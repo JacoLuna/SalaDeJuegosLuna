@@ -1,8 +1,9 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../classes/user/user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { FirebaseError } from 'firebase/app';
 
 @Injectable({ 
   providedIn: 'root',
@@ -32,13 +33,17 @@ export class AuthenticationService{
   }
 
   async register(email: string, password: string) {
-    const resp = await this.ngFireAuth.createUserWithEmailAndPassword(
-      email,
-      password
-    );
-    this.userCredential = resp.user;
-    return resp;
-  }
+    try{
+      const resp = await this.ngFireAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      this.userCredential = resp.user;
+      return  resp;
+    } catch (e){
+      throw  e;
+    }
+}
   
   async logOut() {
     this.ngFireAuth.signOut();
