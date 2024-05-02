@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../classes/user/user';
-import { BehaviorSubject } from 'rxjs';
 import { MessageService } from './message.service';
 import { Message } from '../interfaces/message';
-
+import firebase from 'firebase/compat/app';
+import { Observable } from 'rxjs';
 @Injectable({ 
   providedIn: 'root',
 })
 export class AuthenticationService{
 
-  user!: User;
-  private userLogged: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
-  userCredential: any = null;
+  user: User = new User();
+  userLogged: Observable<firebase.User | null>;
+  private userCredential: any = null;
 
-  constructor(public ngFireAuth: AngularFireAuth, public msg: MessageService) {}
-
+  constructor(public ngFireAuth: AngularFireAuth, public msg: MessageService) {
+    this.userLogged = this.ngFireAuth.authState;
+  }
   
   async loginUser(email: string, password: string) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password)
@@ -36,7 +37,6 @@ export class AuthenticationService{
       this.msg.agregarMensaje(mensaje).
       then( () => {
         console.log("se guardó exitosamente la info");
-        this.userLogged.next(this.user);
       }).
       catch ( (err) => {
         console.log("ERROR" + err);
@@ -59,9 +59,5 @@ export class AuthenticationService{
   
   async logOut() {
     this.ngFireAuth.signOut();
-  }
-
-  get userLoggedIn(){
-    return this.userLogged.asObservable();
   }
 }

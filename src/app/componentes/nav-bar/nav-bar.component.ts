@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
-import { User } from '../../classes/user/user';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,16 +11,17 @@ import { User } from '../../classes/user/user';
 })
 export class NavBarComponent {
   isLogged: boolean = false;
-  user: User = new User();
+  mail!: string | null;
   constructor(private Auth: AuthenticationService){}
   
   ngOnInit(): void {
-    this.Auth.userLoggedIn.subscribe(user => {
-      console.log(user);
-      this.isLogged = true;
-      this.user = user;
+    this.Auth.userLogged.subscribe(userLogged => {
+      if(userLogged){
+        console.log(userLogged);
+        this.isLogged = true;
+        this.mail = userLogged.email;
+      }
     });
-    this.logOut();
   }
   logOut(){
     this.Auth.logOut();

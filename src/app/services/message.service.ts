@@ -7,17 +7,15 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
   providedIn: 'root'
 })
 export class MessageService {
-  
-  private mensajesCollection: AngularFirestoreCollection<Message>;
-  mensajes: Observable<Message[]>;
-
   constructor(private firestore: AngularFirestore) {
     this.mensajesCollection = this.firestore.collection<Message>('mensajes');
     this.mensajes = this.mensajesCollection.valueChanges();
   }
 
+  private mensajesCollection: AngularFirestoreCollection<Message>;
+  mensajes: Observable<Message[]>;
+
   agregarMensaje(mensaje: Message) {
     return this.mensajesCollection.add(mensaje);
   }
-
 }
