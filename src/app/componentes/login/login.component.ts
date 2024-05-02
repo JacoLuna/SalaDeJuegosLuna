@@ -21,22 +21,8 @@ export class LoginComponent {
   constructor(public Auth: AuthenticationService, public msg: MessageService) {}
 
   async Login() {
-    const user = await this.Auth.loginUser(this.correo, this.clave).
-    then(Response => {
-
-      const mensaje: Message = {
-        data:"coreo:" +  `${this.correo}` + " clave " + `${this.clave}`,
-        fechaIngreso: new Date(),
-      }
-
-      this.msg.agregarMensaje(mensaje).
-      then( (Response) => {
-        console.log("se guardó exitosamente la info");
-      }).
-      catch ( (err) => {
-        console.log("ERROR");
-      });
-
+    await this.Auth.loginUser(this.correo, this.clave).
+    then( () => {
       this.router2.navigate(['/home']);
     }).catch( error => {
       console.log(error);
