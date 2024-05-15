@@ -1,0 +1,50 @@
+@if (usuarioLogeado && chat) {
+    <div class="card text-center">
+        <div class="card-header">
+            <img src="assets/cruz.png" class="closeIcon" alt="Close Icon" (click)="chat = false">
+        </div>
+        
+        <div id="msgContainer" class="card-body h-100">
+          @for (msg of messages; track messages) {
+          <div class="msg" [ngClass]="user.uid == msg.uid? 'enviado' : 'recibido'">
+            <p id="aliasHour">
+              {{ user.alias }}
+              a las {{ parsedTime(msg.time)}}
+            </p>            
+            <p id="mensaje">
+              {{ msg.message }}
+            </p>
+          </div>
+          }
+        </div>
+      
+        <form class="card-footer text-muted" (ngSubmit)="enviarMensaje()">
+          <div class="input-group-append">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="mensaje"
+                [(ngModel)]="nuevoMensaje"
+                name="mensaje"
+              />
+              <span>
+                <img
+                  class="imgEnviar"
+                  src="/assets/avion-de-papel.png"
+                  width="30px"
+                  alt="enviar mensaje"
+                  (click)="enviarMensaje()"
+                />
+              </span>
+          </div>
+        </form>
+      </div>
+}@else if(usuarioLogeado && !chat){
+    <div class="chatIconContainer" (click)="chat = true">
+        <img 
+        src="assets/chat-img-removebg-preview.png"
+        class="chatIcon" 
+        alt="chat Icon"
+        (click)="scrollToLastElementByClass()">
+    </div>
+}

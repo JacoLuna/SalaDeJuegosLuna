@@ -2,18 +2,11 @@
     <div class="heading">
       <h2>Register</h2>
       <i class="gg-close close" routerLinkActive="active" routerLink="/home"></i>
-      <form  action="">
+      <form>
       <div class="input-group input-group-lg">
         <!-- <span class="input-group-addon"><i class="fa fa-user"></i></span> -->
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Username or email"
-          [(ngModel)]="correo"
-          name="correo"
-        />
+        <input type="text" class="form-control" placeholder="Username or email" [(ngModel)]="correo" name="correo"/>
       </div>
-  
       <div class="input-group input-group-lg">
         <!-- <span class="input-group-addon"><i class="fa fa-lock"></i></span> -->
         <input type="password" class="form-control" placeholder="Password" [(ngModel)]="clave" name="clave"/>
@@ -21,8 +14,18 @@
       <div class="input-group input-group-lg">
         <input type="password" class="form-control" placeholder="Repeat Password" [(ngModel)]="clave2" name="clave2"/>
       </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="nombre" [(ngModel)]="nombre" name="nombre"/>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="apellido" [(ngModel)]="apellido" name="apellido"/>
+      </div>
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="Alias" [(ngModel)]="Alias" name="Alias"/>
+      </div>
   
       <button type="submit" class="float" (click)="register()">register</button>
+      <button type="submit" class="float" (click)="llenarCampos()">llenar campos</button>
       </form>
 
     </div>

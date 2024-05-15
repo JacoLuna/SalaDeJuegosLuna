@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +17,6 @@ export class NavBarComponent {
   ngOnInit(): void {
     this.Auth.userLogged.subscribe(userLogged => {
       if(userLogged){
-        console.log(userLogged);
         this.isLogged = true;
         this.mail = userLogged.email;
       }

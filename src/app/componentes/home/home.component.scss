@@ -52,3 +52,10 @@ header.masthead .bg-circle-4 {
   top: -5rem;
   right: 35%;
 }
+
+.game-img{
+  cursor: pointer;
+}
+.game-img:active{
+  transform: scale(0.9);
+}

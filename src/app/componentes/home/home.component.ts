@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { Component, Inject, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
-import { User } from '../../classes/user/user';
+import { User } from '../../classes/user/user/user';
 
 @Component({
   selector: 'app-home',
@@ -14,5 +14,12 @@ import { User } from '../../classes/user/user';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+
+  router = inject(Router);
+
   constructor(private Auth: AuthenticationService) {}
+  
+  abrirAhorcado(){
+    this.router.navigate(['/ahorcado']);
+  }
 }

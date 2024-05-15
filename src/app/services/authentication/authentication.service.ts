@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { User } from '../classes/user/user';
-import { MessageService } from './message.service';
-import { Message } from '../interfaces/message';
+import { User } from '../../classes/user/user/user';
+import { SessionService } from '../session/session.service';
+import { Session } from '../../interfaces/session';
 import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 @Injectable({ 
@@ -10,11 +10,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService{
 
-  user: User = new User();
   userLogged: Observable<firebase.User | null>;
-  private userCredential: any = null;
+  private userCredential!: any;
 
-  constructor(public ngFireAuth: AngularFireAuth, public msg: MessageService) {
+  constructor(public ngFireAuth: AngularFireAuth, public msg: SessionService) {
     this.userLogged = this.ngFireAuth.authState;
   }
   
@@ -22,19 +21,11 @@ export class AuthenticationService{
     return this.ngFireAuth.signInWithEmailAndPassword(email, password)
     .then( (credenciales) => {
       this.userCredential = credenciales.credential;
-
-      this.user = new User();
-      this.user.name = email; 
-      this.user.pass = password; 
-      this.user.credentials = credenciales;
-      this.user.loginDate = new Date();
-
-      const mensaje: Message = {
-        data:"coreo:" +  `${this.user.name}` + " clave " + `${this.user.pass}`,
-        fechaIngreso: this.user.loginDate,
+      const session: Session = {
+        gmail: email,
+        fechaIngreso: new Date(),
       }
-
-      this.msg.agregarMensaje(mensaje).
+      this.msg.agregarMensaje(session).
       then( () => {
         console.log("se guardó exitosamente la info");
       }).

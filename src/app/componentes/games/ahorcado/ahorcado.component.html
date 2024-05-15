@@ -1,0 +1,19 @@
+<div id="content">
+    
+    <div id="ahorcado">
+        <img src="assets/juegos/ahorcado/ahorcado.png" alt="">
+    </div>
+
+    <div id="word">
+        @for (letter of secretWord; track $index) {
+            <input disabled class="letras" [class]="letter" >
+        }
+
+    </div>
+
+    <div id="letters-container">
+        @for (letter of letters; track $index) {
+            <img class="letters" [src]="letter.img" [alt]="letter.letter" (click)="letterSelected(letter.letter)">
+        }
+    </div>
+</div>

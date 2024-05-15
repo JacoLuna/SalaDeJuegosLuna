@@ -1,0 +1,88 @@
+.card{
+    height: 500px;
+    width: 300px;
+    position: fixed;
+    right: 0.5rem;
+    bottom: 0.5rem;
+
+    .msg{
+        height: 50px;
+        #aliasHour{
+            margin-bottom: 0;
+        }
+        #msg{
+            margin-top: 0;
+        }
+    }
+}
+
+.card-header{
+    
+    .closeIcon{
+        height: 30px;
+        cursor: pointer;
+        margin-left: 90%;
+    }
+}
+
+.card-body{
+    padding: 0.5rem;
+    overflow: scroll;
+}
+.card-body::-webkit-scrollbar{
+    display: none;
+}
+
+.input-group-append{
+    display: flex;
+    flex-direction: row;
+
+    .imgEnviar{
+        height: 80%;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+}
+
+.imgEnviar:active{
+    transform: scale(0.9);
+}
+
+
+.enviado{
+    display: block;
+    float: right;
+    background-color: teal;
+    min-width: 50.01%;
+    color: black;
+    text-align: left;
+    border-radius: 10px;
+    margin: 5px;
+    padding-left: 10px;
+}
+.recibido{
+    display: block;
+    float: left;
+    background-color: grey;
+    min-width: 50.01%;
+    color: black;
+    text-align: left;
+    border-radius: 10px;
+    margin: 5px;
+    padding-left: 10px;
+}
+
+.chatIconContainer{
+    position: fixed;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    .chatIcon{
+        height: 60px;
+    }
+}
