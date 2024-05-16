@@ -1,33 +1,68 @@
-#content{
-    width: 100vw;
-    height: 100vh;
-
-    #ahorcado{
-        width: 100%;
-        img{
-            margin: auto 30%;
-        }
+#content {
+  width: 100vw;
+  height: 100vh;
+  .content-div{
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  #top-content{
+    margin-top: 0;
+    margin: auto 40%;
+    justify-items: center;
+  }
+  #middleContent {
+    display: flex;
+    flex-direction: row;
+    #ahorcado {
+      width: 100%;
+      img {
+        margin: auto 30%;
+      }
     }
+    #intentos {
+      position: absolute;
+      height: 55%;
+      width: 35%;
+      top: 15%;
+      left: 63%;
 
-    #word{
-        margin: auto 40%;
-        
-        .letras{
-            width: 3rem;
-            text-align: center;
-        }
+      .letters-selected {
+        margin: 0.5rem;
+        flex-wrap: wrap;
+        width: 45px;
+      }
     }
+  }
 
-    #letters-container{
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-
-        .letters{
-            width: 45px;
-        }
-        .letters:active{
-            transform: scale(0.9);
-        }
+  #word {
+    margin: auto 40%;
+    width: 40%;
+    .letras {
+      width: 3rem;
+      text-align: center;
     }
+  }
+
+  #letters-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    .letters {
+      width: 45px;
+    }
+    .letters:active {
+      transform: scale(0.9);
+    }
+  }
+
+  #game-btn-container {
+    margin: auto 45%;
+    justify-items: center;
+    margin-bottom: 0;
+    #game-btn {
+        width: 150px;
+        // margin: auto 50%;
+    }
+  }
 }

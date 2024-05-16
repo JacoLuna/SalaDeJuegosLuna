@@ -20,6 +20,6 @@ export class HomeComponent {
   constructor(private Auth: AuthenticationService) {}
   
   abrirAhorcado(){
-    this.router.navigate(['/ahorcado']);
+    this.router.navigate(['/games/ahorcado']);
   }
 }

@@ -4,8 +4,13 @@ export const routes: Routes = [
   {
     path: 'ahorcado',
     loadComponent: () =>
-      import('./ahorcado/ahorcado.component').then((m) => m.AhorcadoComponent),
+      import('../games/ahorcado/ahorcado.component').then((m) => m.AhorcadoComponent),
+  },
+  {
+    path: 'mayorMenos',
+    loadComponent: () =>
+      import('../games/mayor-menor/mayor-menor.component').then((m) => m.MayorMenorComponent),
   }
 ];
 
-export default routes
+export default routes;

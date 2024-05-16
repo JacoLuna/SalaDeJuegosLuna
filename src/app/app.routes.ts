@@ -29,11 +29,8 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'ahorcado',
-    loadComponent: () =>
-      import('./componentes/games/ahorcado/ahorcado.component').then(
-        (m) => m.AhorcadoComponent
-      ),
+    path: 'games',
+    loadChildren: () => import('./componentes/games/games.routes'),
   },
 
   { path: '**', component: HomeComponent },

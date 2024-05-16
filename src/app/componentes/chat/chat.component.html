@@ -1,7 +1,7 @@
 @if (usuarioLogeado && chat) {
     <div class="card text-center">
         <div class="card-header">
-            <img src="assets/cruz.png" class="closeIcon" alt="Close Icon" (click)="chat = false">
+            <img src="assets/chat/cruz.png" class="closeIcon" alt="Close Icon" (click)="chat = false">
         </div>
         
         <div id="msgContainer" class="card-body h-100">
@@ -30,7 +30,7 @@
               <span>
                 <img
                   class="imgEnviar"
-                  src="/assets/avion-de-papel.png"
+                  src="assets/chat/avion-de-papel.png"
                   width="30px"
                   alt="enviar mensaje"
                   (click)="enviarMensaje()"
@@ -42,7 +42,7 @@
 }@else if(usuarioLogeado && !chat){
     <div class="chatIconContainer" (click)="chat = true">
         <img 
-        src="assets/chat-img-removebg-preview.png"
+        src="assets/chat/chat-img-removebg-preview.png"
         class="chatIcon" 
         alt="chat Icon"
         (click)="scrollToLastElementByClass()">

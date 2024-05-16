@@ -1,19 +1,46 @@
 <div id="content">
-    
-    <div id="ahorcado">
-        <img src="assets/juegos/ahorcado/ahorcado.png" alt="">
+    <div id="top-content" class="content-div">
+        <div id="ahorcado">
+            <h1> Ahorcado </h1>
+        </div>
     </div>
 
-    <div id="word">
+    <div id="middleContent" class="content-div">
+        <div id="ahorcado">
+            @if(tries[0].letter == ''){
+                <img src="assets\juegos\ahorcado\partes\0 tries.png" alt="">
+            }@else if (fails == 7) {
+                <img src="assets\juegos\ahorcado\partes\perdio" alt="">
+            }@else{
+                <img [src]="tries[fails-1].img" alt="">
+            }
+        </div>
+    
+        <div id="intentos">
+            <h2> Errores {{fails}} </h2>
+            @for (wrongLetter of tries; track $index) {
+                <img class="letters-selected" [src]="wrongLetter.letter" [alt]="" (click)="letterSelected(wrongLetter.letter, $index)">
+            }
+            <h2> Te quedan {{tries.length - fails}} intentos </h2>
+        </div>
+    </div>
+
+    <div id="word" class="content-div">
         @for (letter of secretWord; track $index) {
             <input disabled class="letras" [class]="letter" >
         }
 
     </div>
 
-    <div id="letters-container">
+
+    <div id="letters-container" class="content-div">
         @for (letter of letters; track $index) {
-            <img class="letters" [src]="letter.img" [alt]="letter.letter" (click)="letterSelected(letter.letter)">
+            @if(!letter.selected){
+                <img class="letters" [src]="letter.img" [alt]="letter.letter" (click)="letterSelected(letter.letter, $index)">
+            }
         }
+    </div>
+    <div id="game-btn-container" class="content-div">
+        <button  mat-stroked-button color="primary" (click)="startGame()" id="game-btn"> iniciar juego</button>
     </div>
 </div>
