@@ -7,7 +7,7 @@ export const routes: Routes = [
       import('../games/ahorcado/ahorcado.component').then((m) => m.AhorcadoComponent),
   },
   {
-    path: 'mayorMenos',
+    path: 'mayorMenor',
     loadComponent: () =>
       import('../games/mayor-menor/mayor-menor.component').then((m) => m.MayorMenorComponent),
   }

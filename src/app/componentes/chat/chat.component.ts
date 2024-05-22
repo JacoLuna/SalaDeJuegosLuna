@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ChatService } from '../../services/chat/chat.service';
 import { chatMsg } from '../../interfaces/chatMsg';
 import { UserService } from '../../services/user/user.service';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-chat',
@@ -33,7 +33,7 @@ export class ChatComponent {
   ngOnInit(): void {
     this.authService.userLogged.subscribe((userLogged) => {
       if (userLogged) {
-        this.userService.users.subscribe((r) => {
+        this.userService.users.subscribe((r) => { 
           this.usuarioLogeado = true;
           this.users = r;
           this.users.forEach(element => {

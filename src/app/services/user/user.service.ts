@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { chatMsg } from '../../interfaces/chatMsg';
 import { User } from '../../classes/user/user/user';
 
 @Injectable({

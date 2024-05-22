@@ -1,5 +1,10 @@
 import { Component, Inject, inject } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
@@ -14,12 +19,18 @@ import { User } from '../../classes/user/user/user';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
   router = inject(Router);
 
   constructor(private Auth: AuthenticationService) {}
-  
-  abrirAhorcado(){
-    this.router.navigate(['/games/ahorcado']);
+
+  abrirJuegos(juego: number) {
+    switch (juego) {
+      case 0:
+        this.router.navigate(['/games/ahorcado']);
+        break;
+      case 1:
+        this.router.navigate(['/games/mayorMenor']);
+        break;
+    }
   }
 }

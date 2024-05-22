@@ -12,14 +12,6 @@ export class User {
         this.correo = correo;
         this.uid = uid;
     }
-
-    // constructorWithData(){
-
-    // }
-
-    // constructorEmpty(){
-
-    // }
 }
 
 

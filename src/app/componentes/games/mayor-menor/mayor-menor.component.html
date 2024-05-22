@@ -1,1 +1,64 @@
-<p>mayor-menor works!</p>
+<div id="content">
+  <div id="top-content" class="content-div">
+      <div id="mayor-menor">
+          <h1> Mayor y Menor </h1>
+      </div>
+  </div>
+
+  <div class="card" id="cards-container">
+    <div>
+      <h4 class="text">Carta actual: {{ currentCard }}</h4>
+      <div class="card" id="currentCard">
+        <div class="card-header">
+          <img class="s-img" src="assets/juegos/mayorMenor/palos/{{getCardPalo(currentCard)}}.png" alt="">
+          <img class="s-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(currentCard)}}.png" alt="">
+        </div>
+        <div class="card-center">
+          <img class="l-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(currentCard)}}.png" alt="">
+        </div>
+        <div class="card-footer">
+          <img class="s-img" src="assets/juegos/mayorMenor/palos/{{getCardPalo(currentCard)}}.png" alt="">
+          <img class="s-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(currentCard)}}.png" alt="">
+        </div>
+      </div>
+    </div>
+
+
+    <div id="buttons-container">
+      <button class="buttons" [disabled]="answer" (click)="guess(true)">Mayor</button>
+      <button class="buttons" [disabled]="answer" (click)="guess(false)">Menor</button>
+      <p>respuesta... {{ message }}</p>
+    </div>
+
+    <div>
+      @if(answer) {
+        <h4 class="text">siguiente carta: {{ nextCard }}</h4>
+      }@else{
+        <h4 class="text">Next Card: ?</h4>  
+      }
+      <div class="card" id="nextCard">
+        <div class="card-header">
+          @if(answer) {
+            <img class="s-img" src="assets/juegos/mayorMenor/palos/{{getCardPalo(nextCard)}}.png" alt="">
+            <img class="s-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(nextCard)}}.png" alt="">
+          }
+        </div>
+        <div class="card-center">
+          @if(!answer) {
+            <img class="l-img" src="assets/juegos/mayorMenor/signo-de-pregunta.png" alt="">
+          }@else {
+            <img class="l-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(nextCard)}}.png" alt="">
+          }
+        </div>
+        <div class="card-footer">
+          @if(answer) {
+            <img class="s-img" src="assets/juegos/mayorMenor/palos/{{getCardPalo(nextCard)}}.png" alt="">
+            <img class="s-img" src="assets/juegos/mayorMenor/valores/{{getCardStringValue(nextCard)}}.png" alt="">
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p>Cards left in deck: {{ deckLength }}</p> -->
+</div>
