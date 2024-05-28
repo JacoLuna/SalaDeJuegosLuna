@@ -1,0 +1,35 @@
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+    #top-content{
+        padding-top: 3rem;
+    }
+    #Juego{
+        padding: 0 2rem;
+    }
+    #about-me{
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+        margin: 2rem 3rem;
+        width: 100%;
+        #img{
+            align-self: center;
+        }
+        #informacion{
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            flex-wrap: wrap;
+            .texto{
+                width: 48%;
+                margin-left: 1rem;
+            }
+        }
+    }
+}

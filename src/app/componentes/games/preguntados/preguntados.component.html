@@ -1,0 +1,52 @@
+<div id="content">
+  <div id="top-content" class="content-div">
+    <div id="preguntados">
+      <h1>Preguntados</h1>
+    </div>
+  </div>
+
+  <div id="vidas-puntaje">
+    <div id="vidas-container">
+      @for (vida of vidas; track $index) {
+        <img class="vidas" src="assets/juegos/mayorMenor/palos/Corazon.png" alt="">
+      }
+    </div>
+    <div id="puntaje">
+      <h3>puntaje {{puntaje}}</h3>
+    </div>
+  </div>
+
+  @if(cargo){
+    <div id="pregunta-container">
+
+        <div id="pregunta">
+          <h1>{{ pregunta }}</h1>
+        </div>
+        <div id="respuestas">
+        @for (pregunta of incorrect_answers; track $index) {
+        <div class="btn-container">
+            <button class="buttons" (click)="responder(pregunta)">
+            {{ pregunta }}
+            </button>
+        </div>
+        }
+        <div class="btn-container">
+            <button class="buttons" (click)="responder(correct_answer)">
+            {{ correct_answer }}
+            </button>
+        </div>
+        </div>
+
+        <div id="mensaje">
+        <h4>respuesta... <h2>{{ mensaje }}</h2></h4>
+        </div>
+    </div>
+  }@else {
+    <div id="pregunta-container">
+        <div id="pregunta">
+        <h1>Cargando..</h1>
+        </div>
+        <h4>Si esto tarda mucho vuelva a cargar la pagina</h4>
+    </div>
+  }
+</div>

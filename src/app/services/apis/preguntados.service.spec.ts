@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { MazoService } from '../mazo/mazo.service';
 
-describe('MazoService', () => {
-  let service: MazoService;
+import { PreguntadosService } from './preguntados.service';
+
+describe('PreguntadosService', () => {
+  let service: PreguntadosService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MazoService);
+    service = TestBed.inject(PreguntadosService);
   });
 
   it('should be created', () => {

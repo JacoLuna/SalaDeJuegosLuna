@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
@@ -12,6 +12,8 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 export class NavBarComponent {
   isLogged: boolean = false;
   mail!: string | null;
+  @Output() userSessionEvent = new EventEmitter<boolean>();
+
   constructor(private Auth: AuthenticationService){}
   
   ngOnInit(): void {
@@ -19,11 +21,13 @@ export class NavBarComponent {
       if(userLogged){
         this.isLogged = true;
         this.mail = userLogged.email;
+        this.userSessionEvent.emit(true);
       }
     });
   }
   logOut(){
-    this.Auth.logOut();
+    this.userSessionEvent.emit(false);
     this.isLogged = false;
+    this.Auth.logOut();
   }
 }

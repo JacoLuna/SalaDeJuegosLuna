@@ -6,9 +6,11 @@
     bottom: 0.5rem;
 
     .msg{
-        height: 50px;
+        min-width: 50.01%;
+        max-width: 100%;
         #aliasHour{
             margin-bottom: 0;
+            font-size: small;
         }
         #msg{
             margin-top: 0;
@@ -26,8 +28,10 @@
 }
 
 .card-body{
+    display: block;
     padding: 0.5rem;
     overflow: scroll;
+    text-wrap: wrap;
 }
 .card-body::-webkit-scrollbar{
     display: none;
@@ -50,18 +54,15 @@
 
 
 .enviado{
-    display: block;
     float: right;
     background-color: teal;
-    min-width: 50.01%;
     color: black;
     text-align: left;
     border-radius: 10px;
-    margin: 5px;
     padding-left: 10px;
+    margin: 5px;
 }
 .recibido{
-    display: block;
     float: left;
     background-color: grey;
     min-width: 50.01%;

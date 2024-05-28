@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import Swal from 'sweetalert2'
 @Component({
@@ -9,12 +9,17 @@ import Swal from 'sweetalert2'
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.scss'
 })
-export class AhorcadoComponent {
+export class AhorcadoComponent implements OnInit{
 
   constructor(protected http: HttpClient){
+  }
+  ngOnInit(): void {
+    
     this.http.get<any>('assets/juegos/ahorcado/palabras.json').subscribe(data => {
       this.palabras = data.palabras;
-    })
+      this.startGame();
+    });
+
   }
   
   palabras!:any;
@@ -58,7 +63,6 @@ export class AhorcadoComponent {
   ]
 
   fails: number = 0;
-  word:string = "";
   secretWord = "";
   wordArray = ['']
   secretWordArray = [''];
@@ -88,6 +92,8 @@ export class AhorcadoComponent {
     this.gameStarted = false;
     this.secretWord = "";
     this.fails = 0;
+    this.wordArray.length = 0;
+
     for (let index = 0; index < this.tries.length; index++) {
       this.tries[index].letter = '';
     }
@@ -109,15 +115,17 @@ export class AhorcadoComponent {
           if(letter == e){
             this.wordArray[index] = e;
           }
-        })
-        if(this.wordArray.length == this.secretWordArray.length){
-          
-          this.wordArray.forEach(e => {
-            this.word += e;
-          })
-        }
-        if(this.word == this.secretWord){
-          console.log("A");
+        });
+        console.log(this.wordArray);
+        console.log(this.secretWordArray);
+        let cont = 0;
+        this.wordArray.forEach( (e, index) => {
+          if(e == this.secretWord[index]){
+            cont++;
+          }
+        });
+
+        if(cont == this.secretWordArray.length){
           this.gameEnded();
         }
 

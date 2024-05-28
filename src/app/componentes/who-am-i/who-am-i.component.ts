@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './who-am-i.component.scss'
 })
 export class WhoAmIComponent {
-
+  protected name: string = "A ";
+  protected age: string = "A ";
+  protected fav_thing: string = "A ";
 }

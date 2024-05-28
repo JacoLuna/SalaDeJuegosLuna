@@ -1,0 +1,38 @@
+<div id="content">
+  <div id="game" class="content-div">
+    <h3>selecciones que valor quiere conseguir</h3>
+    <h5>luego podrá cambiarlo</h5>
+    <div id="dados-container">
+      @for (dado of valores; track $index) {
+      <div (click)="selectValue(dado.getValue())">
+        <img
+          [ngClass]="
+            valorElegido == dado.getValue() ? 'selected' : 'dados unfocus'
+          "
+          src="assets/juegos/dadosLocos/{{ dado.getValue() }}.png"
+        />
+      </div>
+      }
+    </div>
+
+    <button class="buttons" (click)="throwDices(false)">Tirar dados</button>
+    <div id="dados-container">
+      @for (dado of dados; track $index) {
+      <img
+        [ngClass]="dado.isSelected() ? 'selected' : 'dados'"
+        (click)="selectDice($index, !dado.isSelected())"
+        src="assets/juegos/dadosLocos/{{ dado.getValue() }}.png"
+      />
+      }
+    </div>
+
+    <h3>Tiradas {{tiradas}}</h3>
+    <h5>Recuerde quiere tener la menor cantidad posible de tiradas</h5>
+    
+    @if (gano) {
+    <h3>Felicitaciones, ganaste !</h3>
+    <button class="buttons" (click)="startGame(false)">reiniciar juego</button>
+    }
+
+  </div>
+</div>

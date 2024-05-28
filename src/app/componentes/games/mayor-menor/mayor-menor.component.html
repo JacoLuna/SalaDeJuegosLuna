@@ -25,9 +25,15 @@
 
 
     <div id="buttons-container">
+      <div id="vidas-container">
+        @for (vida of vidas; track $index) {
+          <img class="vidas" src="assets/juegos/mayorMenor/palos/Corazon.png" alt="">
+        }
+      </div>
       <button class="buttons" [disabled]="answer" (click)="guess(true)">Mayor</button>
       <button class="buttons" [disabled]="answer" (click)="guess(false)">Menor</button>
-      <p>respuesta... {{ message }}</p>
+      <h3>puntaje {{puntaje}}</h3>
+      <p>respuesta... <span class="animacion">{{ message }}</span></p>
     </div>
 
     <div>
@@ -59,6 +65,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <p>Cards left in deck: {{ deckLength }}</p> -->
 </div>

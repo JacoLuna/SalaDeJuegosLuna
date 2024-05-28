@@ -2,11 +2,14 @@
   width: 100vw;
   height: 100vh;
   #top-content{
+    display: flex;
     margin-top: 0;
-    margin: auto 40%;
-    padding-top: 1rem;
+    justify-content: center;
     justify-items: center;
     height: 20%;
+    #mayor-menor{
+      padding-top: 7rem;
+    }
   }
   .content-div{
     margin-top: 2.5rem;
@@ -70,8 +73,7 @@
         }
       }
     }
-    // #currentCard{}
-    // #nextCard{}
+    
     #buttons-container{
       display: flex;
       flex-direction: column;
@@ -126,7 +128,26 @@
         background: #808080;
         color: #171717;
       }
+      #vidas-container{
+        display: flex;
+        flex-direction: row;
+        .vidas{
+          width: 50px;
+        }
+      }
     }
 
+  }
+}
+.animacion{
+  animation: expand 2s linear infinite;
+}
+
+@keyframes expand {
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(10);
   }
 }

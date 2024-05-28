@@ -1,8 +1,10 @@
 <header>
-  <app-nav-bar></app-nav-bar>
+  <app-nav-bar (userSessionEvent)="userSession($event)"></app-nav-bar>
 </header>
 <section>
   <router-outlet></router-outlet>
 </section>
-<app-chat></app-chat>
+@if(userLogged){
+  <app-chat></app-chat>
+}
 <footer></footer>

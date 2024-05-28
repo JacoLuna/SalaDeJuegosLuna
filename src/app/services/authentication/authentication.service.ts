@@ -5,6 +5,7 @@ import { SessionService } from '../session/session.service';
 import { Session } from '../../interfaces/session';
 import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({ 
   providedIn: 'root',
 })
@@ -13,7 +14,7 @@ export class AuthenticationService{
   userLogged: Observable<firebase.User | null>;
   private userCredential!: any;
 
-  constructor(public ngFireAuth: AngularFireAuth, public msg: SessionService) {
+  constructor(public ngFireAuth: AngularFireAuth, public msg: SessionService, private router: Router) {
     this.userLogged = this.ngFireAuth.authState;
   }
   
@@ -49,6 +50,11 @@ export class AuthenticationService{
 }
   
   async logOut() {
+    this.router.navigate(['/home']);
     this.ngFireAuth.signOut();
+  }
+
+  getAuthToken(){
+    return this.ngFireAuth.idToken;
   }
 }

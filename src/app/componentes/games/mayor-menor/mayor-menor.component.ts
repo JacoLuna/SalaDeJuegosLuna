@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { MazoService } from '../../../services/mazo/mazo.service';
+import { MazoService } from '../../../services/games/mazo/mazo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -16,6 +17,8 @@ export class MayorMenorComponent implements OnInit{
   deckLength!: number;
   gano!: boolean;
   answer: boolean = true; 
+  puntaje: number = 0;
+  vidas: boolean[] = [true,true,true,true,true];
 
   constructor(){}
 
@@ -38,22 +41,34 @@ export class MayorMenorComponent implements OnInit{
     if ((mayor && nextCardValue >= currentCardValue) || (!mayor && nextCardValue <= currentCardValue)) {
       this.message = 'Correcta!';
       this.gano = true;
+      this.puntaje++;
     } else {
       this.message = 'Incorrecta!';
       this.gano = false;
+      this.vidas.length = this.vidas.length-1;
     }
     this.answer = true;
 
-    setTimeout(() => {
-      this.currentCard = this.nextCard;
-      this.nextCard = this.mazoSrv.drawCard();
-      this.deckLength = this.mazoSrv.getDeckLength();
-      this.message = '';
-      if(this.deckLength == 0){
-        this.mazoSrv.startGame();
-      }
-      this.answer = false;
-    }, 1500);
+    if(this.vidas.length == 0){
+      Swal.fire({
+        icon: "error",
+        title: "Que lastima!",
+        text: "se te acabaron las vidas",
+      });
+      this.vidas = [true,true,true,true,true];
+      this.puntaje = 0;
+    }
+      setTimeout(() => {
+        this.currentCard = this.nextCard;
+        this.nextCard = this.mazoSrv.drawCard();
+        this.deckLength = this.mazoSrv.getDeckLength();
+        this.message = '';
+        if(this.deckLength == 0){
+          this.mazoSrv.startGame();
+        }
+        this.answer = false;
+      }, 1500);
+    
   }
 
   getCardValue(card: string): number {

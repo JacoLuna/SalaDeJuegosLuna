@@ -69,6 +69,7 @@ export class ChatComponent {
       message: this.nuevoMensaje,
       time: Date.now(),
       uid: this.user.uid,
+      Alias: this.user.alias
     };
     if (msg.message == '') return;
 
