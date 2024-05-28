@@ -12,7 +12,7 @@ export class PreguntadosService {
 
   }
   get(): Observable<any> {
-    return this.http.get(this.api + 'amount=1&encode=url3986');
+    return this.http.get<any>(this.api + 'amount=1&encode=url3986');
   }
 
   // pais(nombrePais:string): Observable<any>{

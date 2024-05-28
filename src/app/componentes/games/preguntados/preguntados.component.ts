@@ -33,16 +33,19 @@ export class PreguntadosComponent implements OnInit {
     this.correct_answer = "";
     this.incorrect_answers = [];
     this.mensaje = "";
-    this.vidas = [true,true,true,true,true];
+    // this.vidas = [true,true,true,true,true];
 
     this.preguntaSrv.get().subscribe( e => {
-      if(e.response_code == 0){
+      console.log(e.results);
+      if(e.results){
         this.pregunta = decodeURIComponent(e.results[0].question);
         this.correct_answer = decodeURIComponent(e.results[0].correct_answer);
         e.results[0].incorrect_answers.forEach((element: string) => {
           this.incorrect_answers.push(decodeURIComponent(element));
         });
         this.cargo = true;
+      }else{
+        console.log(e);
       }
     })
   }
