@@ -2,7 +2,11 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { WhoAmIComponent } from './componentes/who-am-i/who-am-i.component';
-// import {canActivate,redirectUnauthorizedTo,redirectLoggedInTo } from "@angular/fire/auth-guard"
+import {
+  canActivate,
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+} from '@angular/fire/auth-guard';
 
 export const routes: Routes = [
   { path: 'whoAmI', component: WhoAmIComponent },
@@ -19,17 +23,20 @@ export const routes: Routes = [
       import('./componentes/login/login.component').then(
         (m) => m.LoginComponent
       ),
+    ...canActivate(() => redirectLoggedInTo(['/home'])),
   },
   {
     path: 'register',
     loadComponent: () =>
       import('./componentes/register/register.component').then(
         (m) => m.RegisterComponent
-      )
+      ),
+    ...canActivate(() => redirectLoggedInTo(['/home'])),
   },
   {
     path: 'games',
     loadChildren: () => import('./componentes/games/games.routes'),
+    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
 
   { path: '**', component: HomeComponent },

@@ -10,6 +10,7 @@ import { OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { User } from '../../classes/user/user/user';
 import Swal from 'sweetalert2'
+import { FirebaseApp } from '@angular/fire/app';
 
 @Component({
   selector: 'app-home',
